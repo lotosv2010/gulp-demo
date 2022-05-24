@@ -1,0 +1,13 @@
+{
+  "name": "gulp-demo",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/lotosv2010/gulp-demo.git",
+  "author": "robin",
+  "license": "MIT",
+  "scripts": {
+    "clean": "gulp clean",
+    "build": "gulp build",
+    "develop": "gulp develop"
+  }
+}
