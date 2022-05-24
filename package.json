@@ -15,6 +15,7 @@
     "@babel/preset-env": "^7.18.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
+    "gulp-imagemin": "^6.2.0",
     "gulp-sass": "^5.1.0",
     "gulp-swig": "^0.9.1",
     "sass": "^1.52.1"
