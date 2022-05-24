@@ -3,7 +3,7 @@ const sass = require('gulp-sass')(require('sass'));
 const babel = require('gulp-babel');
 const swig = require('gulp-swig');
 const imagemin = require('gulp-imagemin');
-console.log(imagemin)
+const del = require('del');
 
 const data = {
   menus: [
@@ -76,10 +76,27 @@ const font = () => {
     .pipe(dest('dist'))
 }
 
+const extra = () => {
+  return src('public/**', { base: 'public' })
+    .pipe(dest('dist'))
+}
+
+const clean = () => {
+  return del(['dist', 'temp'])
+}
+
 const compile = parallel(style, script, page, image, font);
+
+// 上线之前执行的任务
+const build = series(
+  clean,
+  parallel(
+    extra,
+    compile
+  )
+);
 
 module.exports = {
   compile,
-  image,
-  font
+  build
 }
