@@ -11,7 +11,10 @@
     "develop": "gulp develop"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@babel/preset-env": "^7.18.0",
     "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
     "gulp-sass": "^5.1.0",
     "sass": "^1.52.1"
   }
