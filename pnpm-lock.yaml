@@ -13,6 +13,7 @@ specifiers:
   gulp-load-plugins: ^2.0.7
   gulp-sass: ^5.1.0
   gulp-swig: ^0.9.1
+  gulp-useref: ^5.0.0
   jquery: ^3.6.0
   sass: ^1.52.1
 
@@ -32,6 +33,7 @@ devDependencies:
   gulp-load-plugins: 2.0.7
   gulp-sass: 5.1.0
   gulp-swig: 0.9.1
+  gulp-useref: 5.0.0
   sass: 1.52.1
 
 packages:
@@ -2217,6 +2219,12 @@ packages:
       typedarray: 0.0.6
     dev: true
 
+  /concat-with-sourcemaps/1.1.0:
+    resolution: {integrity: sha512-4gEjHJFT9e+2W/77h/DS5SGUgwDaOwprX8L/gl5+3ixnzkVJJsZWDSelmN3Oilw3LNDZjZV0yqH1hLG3k6nghg==}
+    dependencies:
+      source-map: 0.6.1
+    dev: true
+
   /config-chain/1.1.13:
     resolution: {integrity: sha512-qj+f8APARXHrM0hraqXYb2/bOVSV4PvJQlNZ/DVj0QrmNM2q2euizkeuVckQ57J+W0mRH6Hvi+k50M4Jul2VRQ==}
     dependencies:
@@ -2671,6 +2679,15 @@ packages:
       end-of-stream: 1.4.4
       inherits: 2.0.4
       readable-stream: 2.3.7
+      stream-shift: 1.0.1
+    dev: true
+
+  /duplexify/4.1.2:
+    resolution: {integrity: sha512-fz3OjcNCHmRP12MJoZMPglx8m4rrFP8rovnk4vT8Fs+aonZoCwGg10dSsQsfP/E62eZcPTMSMP6686fu9Qlqtw==}
+    dependencies:
+      end-of-stream: 1.4.4
+      inherits: 2.0.4
+      readable-stream: 3.6.0
       stream-shift: 1.0.1
     dev: true
 
@@ -3268,6 +3285,10 @@ packages:
       for-in: 1.0.2
     dev: true
 
+  /fork-stream/0.0.4:
+    resolution: {integrity: sha1-24Sfznf2cIpfjzhq5TOgkHtUrnA=}
+    dev: true
+
   /fragment-cache/0.2.1:
     resolution: {integrity: sha1-QpD60n8T6Jvn8zeZxrxaCr//DRk=}
     engines: {node: '>=0.10.0'}
@@ -3650,6 +3671,23 @@ packages:
       - supports-color
     dev: true
 
+  /gulp-concat/2.6.1:
+    resolution: {integrity: sha1-Yz0WyV2IUEYorQJmVmPO5aR5M1M=}
+    engines: {node: '>= 0.10'}
+    dependencies:
+      concat-with-sourcemaps: 1.1.0
+      through2: 2.0.5
+      vinyl: 2.2.1
+    dev: true
+
+  /gulp-if/3.0.0:
+    resolution: {integrity: sha512-fCUEngzNiEZEK2YuPm+sdMpO6ukb8+/qzbGfJBXyNOXz85bCG7yBI+pPSl+N90d7gnLvMsarthsAImx0qy7BAw==}
+    dependencies:
+      gulp-match: 1.1.0
+      ternary-stream: 3.0.0
+      through2: 3.0.2
+    dev: true
+
   /gulp-imagemin/6.2.0_gulp@4.0.2:
     resolution: {integrity: sha512-luHT+8kUz60KGzjJLUFzaPjl4b38UQLj8BJGkpJACRjiVEuzjohMOmLagkgXs+Rs4vYaUBr9tt1F/vLizaxgGg==}
     engines: {node: '>=8'}
@@ -3687,6 +3725,12 @@ packages:
       resolve: 1.22.0
     dev: true
 
+  /gulp-match/1.1.0:
+    resolution: {integrity: sha512-DlyVxa1Gj24DitY2OjEsS+X6tDpretuxD6wTfhXE/Rw2hweqc1f6D/XtsJmoiCwLWfXgR87W9ozEityPCVzGtQ==}
+    dependencies:
+      minimatch: 3.1.2
+    dev: true
+
   /gulp-sass/5.1.0:
     resolution: {integrity: sha512-7VT0uaF+VZCmkNBglfe1b34bxn/AfcssquLKVDYnCDJ3xNBaW7cUuI3p3BQmoKcoKFrs9jdzUxyb+u+NGfL4OQ==}
     engines: {node: '>=12'}
@@ -3709,6 +3753,21 @@ packages:
       plugin-error: 1.0.1
       replace-ext: 1.0.1
       swig-templates: 2.0.3
+    dev: true
+
+  /gulp-useref/5.0.0:
+    resolution: {integrity: sha512-YNnc+DTMBBVoWXunT2RvWuUReZEjzS98XvLXrMLE3uoouQ9to8R4cfUuJzp9i1IJ6+DT0tBvyNVDrkz3NuXIiA==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      event-stream: 4.0.1
+      extend: 3.0.2
+      glob: 7.2.3
+      gulp-concat: 2.6.1
+      gulp-if: 3.0.0
+      plugin-error: 1.0.1
+      through2: 4.0.2
+      useref: 1.4.4
+      vinyl-fs: 3.0.3
     dev: true
 
   /gulp-util/3.0.8:
@@ -4853,6 +4912,10 @@ packages:
     dev: true
     optional: true
 
+  /merge-stream/2.0.0:
+    resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
+    dev: true
+
   /merge2/1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
@@ -5622,6 +5685,15 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
+  /readable-stream/3.6.0:
+    resolution: {integrity: sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA==}
+    engines: {node: '>= 6'}
+    dependencies:
+      inherits: 2.0.4
+      string_decoder: 1.1.1
+      util-deprecate: 1.0.2
+    dev: true
+
   /readdirp/2.2.1:
     resolution: {integrity: sha512-1JU/8q+VgFZyxwrJ+SVIOsh+KywWGpds3NTqikiKpDMZWScmAYyKIgqkO+ARvNWJfXeXR1zxz7aHF4u4CyH6vQ==}
     engines: {node: '>=0.10'}
@@ -6214,7 +6286,6 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
     dev: true
-    optional: true
 
   /sparkles/1.0.1:
     resolution: {integrity: sha512-dSO0DDYUahUt/0/pD/Is3VIm5TGJjludZ0HVymmhYF6eNA53PVLhnUk0znSYbH8IYBuJdCE+1luR22jNLMaQdw==}
@@ -6524,6 +6595,15 @@ packages:
     dev: true
     optional: true
 
+  /ternary-stream/3.0.0:
+    resolution: {integrity: sha512-oIzdi+UL/JdktkT+7KU5tSIQjj8pbShj3OASuvDEhm0NT5lppsm7aXWAmAq4/QMaBIyfuEcNLbAQA+HpaISobQ==}
+    dependencies:
+      duplexify: 4.1.2
+      fork-stream: 0.0.4
+      merge-stream: 2.0.0
+      through2: 3.0.2
+    dev: true
+
   /tfunk/4.0.0:
     resolution: {integrity: sha512-eJQ0dGfDIzWNiFNYFVjJ+Ezl/GmwHaFTBTjrtqNPW0S7cuVDBrZrmzUz6VkMeCR4DZFqhd4YtLwsw3i2wYHswQ==}
     dependencies:
@@ -6553,6 +6633,19 @@ packages:
     dependencies:
       readable-stream: 2.3.7
       xtend: 4.0.2
+    dev: true
+
+  /through2/3.0.2:
+    resolution: {integrity: sha512-enaDQ4MUyP2W6ZyT6EsMzqBPZaM/avg8iuo+l2d3QCs0J+6RaqkHV/2/lOwDTueBHeJ/2LG9lrLW3d5rWPucuQ==}
+    dependencies:
+      inherits: 2.0.4
+      readable-stream: 2.3.7
+    dev: true
+
+  /through2/4.0.2:
+    resolution: {integrity: sha512-iOqSav00cVxEEICeD7TjLB1sueEL+81Wpzp2bY17uZjZN0pWZPuo4suZ/61VujxmqSGFfgOcNuTZ85QJwNZQpw==}
+    dependencies:
+      readable-stream: 3.6.0
     dev: true
 
   /time-stamp/1.1.0:
@@ -6828,6 +6921,11 @@ packages:
   /use/3.1.1:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /useref/1.4.4:
+    resolution: {integrity: sha512-Hcr9SSq1OsLSa9VAVtA28j8HrpFB2AdbRAkFPbBArDe6y54jQmgulQRxphdi5TAjVPj0mmEJfjBUuZArsmfsqQ==}
+    engines: {node: '>=4'}
     dev: true
 
   /util-deprecate/1.0.2:

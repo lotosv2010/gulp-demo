@@ -116,14 +116,30 @@ const serve = () => {
   });
 };
 
-const compile = parallel(style, script, page, image, font);
+const useref = () => {
+  return src('dist/*.html', { base: 'dist' })
+    .pipe(plugins.useref({ searchPath: ['dist', '.'] }))
+    // html js css
+    // .pipe(plugins.if(/\.js$/, plugins.uglify()))
+    // .pipe(plugins.if(/\.css$/, plugins.cleanCss()))
+    // .pipe(plugins.if(/\.html$/, plugins.htmlmin({
+    //   collapseWhitespace: true,
+    //   minifyCSS: true,
+    //   minifyJS: true
+    // })))
+    .pipe(dest('dist'))
+}
+
+const compile = parallel(style, script, page);
 
 // 上线之前执行的任务
 const build = series(
   clean,
   parallel(
-    extra,
-    compile
+    series(compile, useref),
+    image,
+    font,
+    extra
   )
 );
 
