@@ -1,8 +1,10 @@
-const { src, dest, series, parallel } = require('gulp');
+const { src, dest, series, parallel, watch } = require('gulp');
 const del = require('del');
 const loadPlugins = require('gulp-load-plugins');
+const browserSync = require('browser-sync');
 
 const plugins = loadPlugins();
+const bs = browserSync.create();
 
 const data = {
   menus: [
@@ -84,6 +86,21 @@ const clean = () => {
   return del(['dist', 'temp'])
 }
 
+const serve = () => {
+  bs.init({
+    notify: true,
+    port: 2022,
+    open: true,
+    files: 'dist/**',
+    server: {
+      baseDir: ['dist', 'src', 'public'],
+      routes: {
+        '/node_modules': 'node_modules'
+      }
+    }
+  });
+}
+
 const compile = parallel(style, script, page, image, font);
 
 // 上线之前执行的任务
@@ -95,7 +112,10 @@ const build = series(
   )
 );
 
+const dev = series(compile, serve);
+
 module.exports = {
   compile,
-  build
+  build,
+  dev
 }
