@@ -1,9 +1,8 @@
 const { src, dest, series, parallel } = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const babel = require('gulp-babel');
-const swig = require('gulp-swig');
-const imagemin = require('gulp-imagemin');
 const del = require('del');
+const loadPlugins = require('gulp-load-plugins');
+
+const plugins = loadPlugins();
 
 const data = {
   menus: [
@@ -48,31 +47,31 @@ const data = {
 
 const style = () => {
   return src('src/assets/styles/*.scss', { base: 'src' })
-  .pipe(sass({ outputStyle: 'expanded' }))
+  .pipe(plugins.sass(require('sass'))({ outputStyle: 'expanded' }))
   .pipe(dest('dist'));
 }
 
 const script = () => {
   return src('src/assets/scripts/*.js', { base: 'src' })
-    .pipe(babel({ presets: ['@babel/preset-env'] }))
+    .pipe(plugins.babel({ presets: ['@babel/preset-env'] }))
     .pipe(dest('dist'));
 }
 
 const page = () => {
   return src('src/*.html', { base: 'src' })
-    .pipe(swig({ data, defaults: { cache: false } })) // 防止模板缓存导致页面不能及时更新
+    .pipe(plugins.swig({ data, defaults: { cache: false } })) // 防止模板缓存导致页面不能及时更新
     .pipe(dest('dist'));
 }
 
 const image = () => {
   return src('src/assets/images/**', { base: 'src' })
-    .pipe(imagemin())
+    .pipe(plugins.imagemin())
     .pipe(dest('dist'))
 }
 
 const font = () => {
   return src('src/assets/fonts/**', { base: 'src' })
-    .pipe(imagemin())
+    .pipe(plugins.imagemin())
     .pipe(dest('dist'))
 }
 
