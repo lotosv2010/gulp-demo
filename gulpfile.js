@@ -45,53 +45,68 @@ const data = {
   ],
   pkg: require('./package.json'),
   date: new Date()
-}
+};
 
 const style = () => {
   return src('src/assets/styles/*.scss', { base: 'src' })
   .pipe(plugins.sass(require('sass'))({ outputStyle: 'expanded' }))
-  .pipe(dest('dist'));
-}
+  .pipe(dest('dist'))
+  .pipe(bs.reload({ stream: true }));
+};
 
 const script = () => {
   return src('src/assets/scripts/*.js', { base: 'src' })
     .pipe(plugins.babel({ presets: ['@babel/preset-env'] }))
-    .pipe(dest('dist'));
-}
+    .pipe(dest('dist'))
+    .pipe(bs.reload({ stream: true }));
+};
 
 const page = () => {
   return src('src/*.html', { base: 'src' })
     .pipe(plugins.swig({ data, defaults: { cache: false } })) // 防止模板缓存导致页面不能及时更新
-    .pipe(dest('dist'));
-}
+    .pipe(dest('dist'))
+    .pipe(bs.reload({ stream: true }));
+};
 
 const image = () => {
   return src('src/assets/images/**', { base: 'src' })
     .pipe(plugins.imagemin())
     .pipe(dest('dist'))
-}
+};
 
 const font = () => {
   return src('src/assets/fonts/**', { base: 'src' })
     .pipe(plugins.imagemin())
     .pipe(dest('dist'))
-}
+};
 
 const extra = () => {
   return src('public/**', { base: 'public' })
     .pipe(dest('dist'))
-}
+};
 
 const clean = () => {
   return del(['dist', 'temp'])
-}
+};
 
 const serve = () => {
+  watch('src/assets/styles/*.scss', style)
+  watch('src/assets/scripts/*.js', script)
+  watch('src/*.html', page);
+  // 下面三个任务会降低开发的构建速度
+  // watch('src/assets/images/**', image)
+  // watch('src/assets/fonts/**', font)
+  // watch('public/**', extra)
+  watch([
+    'src/assets/images/**',
+    'src/assets/fonts/**',
+    'public/**'
+  ], bs.reload);
   bs.init({
-    notify: true,
+    notify: false,
     port: 2022,
-    open: true,
-    files: 'dist/**',
+    // open: true,
+    // files: 'dist/**',
     server: {
       baseDir: ['dist', 'src', 'public'],
       routes: {
@@ -99,7 +114,7 @@ const serve = () => {
       }
     }
   });
-}
+};
 
 const compile = parallel(style, script, page, image, font);
 
