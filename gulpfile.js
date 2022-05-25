@@ -120,13 +120,13 @@ const useref = () => {
   return src('dist/*.html', { base: 'dist' })
     .pipe(plugins.useref({ searchPath: ['dist', '.'] }))
     // html js css
-    // .pipe(plugins.if(/\.js$/, plugins.uglify()))
-    // .pipe(plugins.if(/\.css$/, plugins.cleanCss()))
-    // .pipe(plugins.if(/\.html$/, plugins.htmlmin({
-    //   collapseWhitespace: true,
-    //   minifyCSS: true,
-    //   minifyJS: true
-    // })))
+    .pipe(plugins.if(/\.js$/, plugins.uglify()))
+    .pipe(plugins.if(/\.css$/, plugins.cleanCss()))
+    .pipe(plugins.if(/\.html$/, plugins.htmlmin({
+      collapseWhitespace: true,
+      minifyCSS: true,
+      minifyJS: true
+    })))
     .pipe(dest('dist'))
 }
 
